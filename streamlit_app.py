@@ -1,8 +1,8 @@
 import streamlit as st
 
 # --- App Title ---
-st.set_page_config(page_title="NAG AI Prompt Generator", layout="wide")
-st.title("NAG AI Prompt Generator")
+st.set_page_config(page_title="AI Prompt Generator by Oak Sopheaktra", layout="wide")
+st.title("AI Prompt Generator by Oak Sopheaktra")
 
 # --- Variables for dropdowns ---
 view_angles = ["Default Angle","Professional Archviz","Eye-Level","High-Angle","Low-Angle","Aerial / Drone",
