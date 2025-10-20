@@ -93,12 +93,12 @@ foreground_elements = st.checkbox("Foreground Elements")
 # --- Generate Prompt ---
 if st.button("Generate Prompt"):
     selected_objects = ", ".join([obj for obj, val in {
-        "Furniture":furniture,
-        "Vehicles (Cars, Bikes)":vehicles,
-        "People":people,
-        "Trees & Vegetation":trees,
-        "Street Furniture":street_furniture,
-        "Foreground Elements":foreground_elements
+        "Furniture": furniture,
+        "Vehicles (Cars, Bikes)": vehicles,
+        "People": people,
+        "Trees & Vegetation": trees,
+        "Street Furniture": street_furniture,
+        "Foreground Elements": foreground_elements
     }.items() if val])
     
     prompt = f"A highly detailed, photorealistic architectural rendering.\n"
@@ -119,4 +119,4 @@ if st.button("Generate Prompt"):
     prompt += "Preserve the building’s original forms and proportions as seen in the input image."
 
     st.text_area("Generated Prompt", prompt, height=400)
-    st.success("Prompt generated! ✅ Copy manually to clipboard (works on mobile and PC).")  this is code to deply
+    st.success("Prompt generated! ✅ Copy manually to clipboard (works on mobile and PC).")
