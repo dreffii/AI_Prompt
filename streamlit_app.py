@@ -61,7 +61,7 @@ site_context_descriptions = {
     "Reflective Salt Flat": "Placed on a tranquil reflective salt flat at sunset, with a vast open horizon, mirror-like ground, and dramatic colorful sky.",
 }
 
-# Internal Material Description
+# --- Internal Material Description ---
 material_description = "accurately represent the materials visible in the input image (concrete, glass, wood, metal, etc.)"
 
 # --- Layout ---
@@ -100,10 +100,16 @@ if st.button("Generate Prompt"):
         "Street Furniture": street_furniture,
         "Foreground Elements": foreground_elements
     }.items() if val])
-    
+
+    # Enforce Default Angle to maintain input view
+    if view_angle == "Default Angle":
+        view_angle_text = "Maintain the exact same camera angle and perspective as the input image"
+    else:
+        view_angle_text = view_angle
+
     prompt = f"A highly detailed, photorealistic architectural rendering.\n"
     prompt += f"Materials: {material_description}.\n"
-    prompt += f"View / Camera Angle: {view_angle}\n"
+    prompt += f"View / Camera Angle: {view_angle_text}\n"
     prompt += f"Depth of Field: {depth_of_field}\n"
     prompt += f"Motion Blur: {motion_blur}\n"
     prompt += f"Time of Day: {time_of_day}\n"
@@ -116,7 +122,7 @@ if st.button("Generate Prompt"):
     prompt += f"Mood / Style: {mood_style}\n"
     prompt += f"Objects included: {selected_objects if selected_objects else 'none'}.\n"
     prompt += "Focus on realistic textures, materials, lighting, and perspective without adding predefined shapes or design elements.\n"
-    prompt += "Preserve the building’s original forms and proportions as seen in the input image."
+    prompt += "Preserve the building’s original forms and proportions exactly as seen in the input image."
 
     st.text_area("Generated Prompt", prompt, height=400)
     st.success("Prompt generated! ✅ Copy manually to clipboard (works on mobile and PC).")
