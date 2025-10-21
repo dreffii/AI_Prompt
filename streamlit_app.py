@@ -1,11 +1,8 @@
 import streamlit as st
 
 # --- App Configuration ---
-st.set_page_config(page_title="AI Prompt Suite by Oak Sopheaktra", layout="wide")
-st.title("AI Prompt Suite by Oak Sopheaktra")
-
-# --- Sidebar Navigation ---
-page = st.sidebar.radio("Select Tool", ["AI Prompt Generator", "AI Concept Developer"])
+st.set_page_config(page_title="AI Prompt Generator by Oak Sopheaktra", layout="wide")
+st.title("AI Prompt Generator by Oak Sopheaktra")
 
 # --- Shared Dropdown Options ---
 view_angles = ["Default Angle","Professional Archviz","Eye-Level","High-Angle","Low-Angle","Aerial / Drone",
@@ -67,129 +64,66 @@ site_context_descriptions = {
 material_description = "accurately represent the materials visible in the input image (concrete, glass, wood, metal, etc.)"
 
 # ======================================================
-# ===============  PAGE 1: REALISTIC PROMPTS ===========
+# ================== MAIN PAGE ========================
 # ======================================================
-if page == "AI Prompt Generator":
-    st.header("📸 AI Prompt Generator (Realistic Output)")
+col1, col2 = st.columns(2)
+with col1:
+    view_angle = st.selectbox("View / Camera Angle", view_angles)
+    depth_of_field = st.selectbox("Depth of Field", depth_of_field_opts)
+    motion_blur = st.selectbox("Motion Blur", motion_blur_opts)
+    time_of_day = st.selectbox("Time of Day", time_of_day_opts)
+    weather = st.selectbox("Weather", weather_opts)
+    wind_strength = st.selectbox("Wind Strength", wind_strength_opts)
+    interior_lights = st.selectbox("Interior Lights", interior_lights_opts)
 
-    col1, col2 = st.columns(2)
-    with col1:
-        view_angle = st.selectbox("View / Camera Angle", view_angles)
-        depth_of_field = st.selectbox("Depth of Field", depth_of_field_opts)
-        motion_blur = st.selectbox("Motion Blur", motion_blur_opts)
-        time_of_day = st.selectbox("Time of Day", time_of_day_opts)
-        weather = st.selectbox("Weather", weather_opts)
-        wind_strength = st.selectbox("Wind Strength", wind_strength_opts)
-        interior_lights = st.selectbox("Interior Lights", interior_lights_opts)
-    with col2:
-        active_reflection = st.selectbox("Active Reflection", active_reflection_opts)
-        render_style = st.selectbox("Render Style", render_style_opts)
-        site_context = st.selectbox("Site Context", site_context_opts)
-        mood_style = st.selectbox("Mood / Style", mood_style_opts)
+with col2:
+    active_reflection = st.selectbox("Active Reflection", active_reflection_opts)
+    render_style = st.selectbox("Render Style", render_style_opts)
+    site_context = st.selectbox("Site Context", site_context_opts)
+    mood_style = st.selectbox("Mood / Style", mood_style_opts)
 
-    st.subheader("Add Objects")
-    furniture = st.checkbox("Furniture")
-    vehicles = st.checkbox("Vehicles (Cars, Bikes)")
-    people = st.checkbox("People")
-    trees = st.checkbox("Trees & Vegetation")
-    street_furniture = st.checkbox("Street Furniture")
-    foreground_elements = st.checkbox("Foreground Elements")
+st.subheader("Add Objects")
+furniture = st.checkbox("Furniture")
+vehicles = st.checkbox("Vehicles (Cars, Bikes)")
+people = st.checkbox("People")
+trees = st.checkbox("Trees & Vegetation")
+street_furniture = st.checkbox("Street Furniture")
+foreground_elements = st.checkbox("Foreground Elements")
 
-    if st.button("Generate Realistic Prompt"):
-        selected_objects = ", ".join([obj for obj, val in {
-            "Furniture": furniture,
-            "Vehicles (Cars, Bikes)": vehicles,
-            "People": people,
-            "Trees & Vegetation": trees,
-            "Street Furniture": street_furniture,
-            "Foreground Elements": foreground_elements
-        }.items() if val])
+# --- Creative Option ---
+creative_mode = st.checkbox("Enable Creative Generation (Change Building Forms)")
 
-        prompt = f"A highly detailed, photorealistic architectural rendering.\n"
-        prompt += f"Materials: {material_description}.\n"
-        prompt += f"View / Camera Angle: {'Keep the same viewpoint as the input image' if view_angle == 'Default Angle' else view_angle}\n"
-        prompt += f"Depth of Field: {depth_of_field}\n"
-        prompt += f"Motion Blur: {motion_blur}\n"
-        prompt += f"Time of Day: {time_of_day}\n"
-        prompt += f"Weather: {weather}\n"
-        prompt += f"Wind Strength: {wind_strength}\n"
-        prompt += f"Interior Lights: {interior_lights}\n"
-        prompt += f"Active Reflection: {active_reflection}\n"
-        prompt += f"Render Style: {render_style}\n"
-        prompt += f"Site Context: {site_context_descriptions.get(site_context, site_context)}\n"
-        prompt += f"Mood / Style: {mood_style}\n"
-        prompt += f"Objects included: {selected_objects if selected_objects else 'none'}.\n"
-        prompt += "Focus on realistic textures, materials, lighting, and perspective without adding predefined shapes or design elements.\n"
-        prompt += "Preserve the building’s original forms and proportions as seen in the input image."
+# --- Generate Prompt ---
+if st.button("Generate Prompt"):
+    selected_objects = ", ".join([obj for obj, val in {
+        "Furniture": furniture,
+        "Vehicles (Cars, Bikes)": vehicles,
+        "People": people,
+        "Trees & Vegetation": trees,
+        "Street Furniture": street_furniture,
+        "Foreground Elements": foreground_elements
+    }.items() if val])
+    
+    prompt = f"A highly detailed architectural rendering.\n"
+    prompt += f"Materials: {material_description}.\n"
+    prompt += f"View / Camera Angle: {view_angle}\n"
+    prompt += f"Depth of Field: {depth_of_field}\n"
+    prompt += f"Motion Blur: {motion_blur}\n"
+    prompt += f"Time of Day: {time_of_day}\n"
+    prompt += f"Weather: {weather}\n"
+    prompt += f"Wind Strength: {wind_strength}\n"
+    prompt += f"Interior Lights: {interior_lights}\n"
+    prompt += f"Active Reflection: {active_reflection}\n"
+    prompt += f"Render Style: {render_style}\n"
+    prompt += f"Site Context: {site_context_descriptions.get(site_context, site_context)}\n"
+    prompt += f"Mood / Style: {mood_style}\n"
+    prompt += f"Objects included: {selected_objects if selected_objects else 'none'}.\n"
 
-        st.text_area("Generated Prompt", prompt, height=400)
-        st.success("✅ Prompt generated! Copy manually to clipboard.")
+    if creative_mode:
+        prompt += "Allow AI to creatively reinterpret the building's forms, proportions, and geometry while keeping the same camera view.\n"
+        prompt += "Focus on innovative architectural shapes, alternative massing, and new design ideas.\n"
+    else:
+        prompt += "Focus on realistic textures, materials, lighting, and perspective without changing the building's original forms.\n"
 
-# ======================================================
-# ============  PAGE 2: CREATIVE FORM DEVELOPER ===========
-# ======================================================
-else:
-    st.header("🎨 AI Concept Developer (Creative Building Forms)")
-
-    st.markdown("""
-This tool generates **creative reinterpretation prompts** for your architectural model.  
-It **does not upload or analyze images** — it only generates AI prompts instructing the model to create **alternative building forms** based on your reference concept.
-""")
-
-    col1, col2 = st.columns(2)
-    with col1:
-        view_angle = st.selectbox("View / Camera Angle", view_angles)
-        depth_of_field = st.selectbox("Depth of Field", depth_of_field_opts)
-        motion_blur = st.selectbox("Motion Blur", motion_blur_opts)
-        time_of_day = st.selectbox("Time of Day", time_of_day_opts)
-        weather = st.selectbox("Weather", weather_opts)
-        wind_strength = st.selectbox("Wind Strength", wind_strength_opts)
-        interior_lights = st.selectbox("Interior Lights", interior_lights_opts)
-    with col2:
-        active_reflection = st.selectbox("Active Reflection", active_reflection_opts)
-        render_style = st.selectbox("Render Style", render_style_opts)
-        site_context = st.selectbox("Site Context", site_context_opts)
-        mood_style = st.selectbox("Mood / Style", mood_style_opts)
-
-    st.subheader("Creativity Options")
-    creative_intent = st.text_input(
-        "Describe the kind of transformation for the building form",
-        placeholder="e.g. more futuristic, curved, biomorphic, parametric, organic shapes, deconstructivist..."
-    )
-    creativity_level = st.slider(
-        "AI Creativity Range (Low = minor changes, High = radical transformations)", 0, 100, 50
-    )
-
-    st.subheader("Add Objects")
-    furniture = st.checkbox("Furniture")
-    vehicles = st.checkbox("Vehicles (Cars, Bikes)")
-    people = st.checkbox("People")
-    trees = st.checkbox("Trees & Vegetation")
-    street_furniture = st.checkbox("Street Furniture")
-    foreground_elements = st.checkbox("Foreground Elements")
-
-    if st.button("Generate Creative Form Prompt"):
-        selected_objects = ", ".join([obj for obj, val in {
-            "Furniture": furniture,
-            "Vehicles (Cars, Bikes)": vehicles,
-            "People": people,
-            "Trees & Vegetation": trees,
-            "Street Furniture": street_furniture,
-            "Foreground Elements": foreground_elements
-        }.items() if val])
-
-        prompt = f"AI creative prompt for architectural design reimagination.\n"
-        prompt += f"The AI should reinterpret and **change the building forms** while keeping proportionality and spatial logic.\n"
-        prompt += f"Creative Intent: {creative_intent if creative_intent else 'Allow AI to explore innovative forms, massing, and structure.'}\n"
-        prompt += f"Creativity Range: {creativity_level}%\n"
-        prompt += f"View / Camera Angle: {'Maintain the same camera angle as the input image' if view_angle == 'Default Angle' else view_angle}\n"
-        prompt += f"Time of Day: {time_of_day}\n"
-        prompt += f"Weather: {weather}\n"
-        prompt += f"Render Style: {render_style}\n"
-        prompt += f"Site Context: {site_context_descriptions.get(site_context, site_context)}\n"
-        prompt += f"Mood / Style: {mood_style}\n"
-        prompt += f"Objects included: {selected_objects if selected_objects else 'none'}.\n"
-        prompt += "Do not replicate the input building exactly — focus on new shapes, innovative geometry, alternative massing, and creative architectural forms."
-
-        st.text_area("Generated Creative Form Prompt", prompt, height=400)
-        st.success("🎨 Creative building form prompt generated! Copy manually to clipboard.")
+    st.text_area("Generated Prompt", prompt, height=400)
+    st.success("✅ Prompt generated! Copy manually to clipboard (works on mobile and PC).")
