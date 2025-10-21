@@ -2,7 +2,7 @@ import streamlit as st
 
 def show_animated_title(
     title="🤖 Prompt Generator by Oak Sopheaktra",
-    font_size="3em",
+    font_size="2em",
     text_color="#000000",
     bounce_height="3px",
     bounce_speed="4s"
