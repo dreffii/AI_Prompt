@@ -17,20 +17,17 @@ def show_animated_title():
         text-align: center;
         font-family: "Georgia", serif;
         font-size: 3em;
-        color: #000000;
+        color: #000000; /* Black text */
         position: relative;
     }
 
     .luxury-title span {
         display: inline-block;
-        animation-name: bounce;
-        animation-duration: calc(2s + (var(--i) * 0.05s));
-        animation-iteration-count: infinite;
-        animation-timing-function: ease-in-out;
+        animation: bounce 6s infinite; /* Slower & longer bounce */
         animation-delay: calc(var(--i) * 0.1s);
     }
 
-    /* Assign index to each letter */
+    /* Assign --i index for staggered animation */
     .luxury-title span:nth-child(1) { --i: 0; }
     .luxury-title span:nth-child(2) { --i: 1; }
     .luxury-title span:nth-child(3) { --i: 2; }
@@ -64,10 +61,10 @@ def show_animated_title():
 
     @keyframes bounce {
         0%, 100% { transform: translateY(0); }
-        50% { transform: translateY(-5px); } /* smaller, slower bounce */
+        50% { transform: translateY(-8px); } /* Slight, elegant bounce */
     }
 
-    /* Optional: subtle gold sparkles */
+    /* Optional subtle sparkles */
     .luxury-title::before,
     .luxury-title::after {
         content: "✨";
@@ -75,11 +72,11 @@ def show_animated_title():
         font-size: 1em;
         color: #FFD700;
         opacity: 0;
-        animation: sparkle 2s infinite;
+        animation: sparkle 3s infinite;
     }
 
     .luxury-title::before { top: -20px; left: 20%; animation-delay: 0s; }
-    .luxury-title::after { top: -10px; right: 25%; animation-delay: 1s; }
+    .luxury-title::after { top: -10px; right: 25%; animation-delay: 1.5s; }
 
     @keyframes sparkle {
         0%, 100% { opacity: 0; transform: scale(0.5) rotate(0deg);}
