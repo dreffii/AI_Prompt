@@ -4,8 +4,8 @@ def show_animated_title(
     title="🏛️ AI Prompt Generator by Oak Sopheaktra",
     font_size="3em",
     text_color="#000000",
-    bounce_height="3px",
-    bounce_speed="4s"
+    bounce_height="5px",
+    bounce_speed="1s"
 ):
     """
     Display a luxury animated title with:
