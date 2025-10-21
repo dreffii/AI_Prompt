@@ -7,9 +7,19 @@ st.title("AI Prompt Generator by Oak Sopheaktra")
 # --- Variables for dropdowns ---
 view_angles = ["Default Angle","Professional Archviz","Eye-Level","High-Angle","Low-Angle","Aerial / Drone",
                "Close-up","Wide Shot","Bird's Eye View","View From Inside (Building to Outside)"]
+
 depth_of_field_opts = ["None","Subtle","Moderate","Strong"]
 motion_blur_opts = ["None","Light","Medium","Heavy"]
-time_of_day_opts = ["Day","Soft Daylight","Midday Sun","Night","Golden Hour","Blue Hour","Dawn","Dusk","Archviz Daylight"]
+
+# Expanded Time of Day Options
+time_of_day_opts = [
+    "Day","Soft Daylight","Midday Sun","Night","Golden Hour","Blue Hour","Dawn","Dusk","Archviz Daylight",
+    "Purple Hour","Evening","Sunrise","Sunset","Early Morning","Late Afternoon","Twilight","Moonlit Night",
+    "Foggy Morning","Overcast Noon","Rainy Afternoon","Stormy Evening","Snowy Morning","Winter Sunset",
+    "Summer Sunrise","Autumn Evening","Spring Twilight","Cloudy Afternoon","Evening Glow","Evening Mist",
+    "Warm Sunset","Cold Sunrise","Night with Streetlights","Misty Morning","Foggy Evening","Purple Twilight"
+]
+
 weather_opts = ["Clear","Overcast","Rainy","Light Rain","Stormy","Foggy","Snowy"]
 wind_strength_opts = ["None","Light Breeze","Strong Wind"]
 interior_lights_opts = ["On","Off"]
@@ -44,154 +54,38 @@ site_context_opts = [
 
 # --- Site context descriptions ---
 site_context_descriptions = {
-    "Enhance Only (No Context)": "Focus on the building itself without adding any external surroundings. Keep the background minimal and neutral.",
-    "Modern Metropolis (Day)": "Situated in a contemporary city during daytime, with clean streets, glass and steel skyscrapers, moderate pedestrian and vehicle activity, under natural daylight.",
-    "Modern Metropolis (Night)": "Set in a modern urban area at night, with illuminated skyscrapers, streetlights, reflections on wet pavements, and scattered traffic.",
-    "Suburban Neighborhood": "Located in a calm suburban area, featuring low-rise houses, tree-lined streets, parked cars, and soft natural light.",
-    "Historic European Street": "Placed on a cobblestone street with historic buildings, ornate facades, traditional street lamps, and light pedestrian traffic.",
-    "Japanese Zen Garden": "Embedded in a tranquil Japanese garden, with stone pathways, koi ponds, bamboo, bonsai trees, and natural soft lighting.",
-    "Coastal Town": "Situated in a small seaside town, with low-rise houses, boardwalks, boats in the harbor, and gentle sunlight reflecting on water.",
-    "Mountain Valley": "Set in a valley surrounded by mountains, with scattered rural houses, rivers or streams, lush vegetation, and realistic daylight.",
-    "Lush Forest": "Embedded in a dense forest, with tall trees, filtered sunlight, moss-covered ground, and natural textures dominating the surroundings.",
-    "Tropical Island Beach": "Located on a tropical beach with palm trees, white sand, turquoise water, and natural sunlight. Subtle vegetation can be included.",
-    "Desert Landscape": "Set in a realistic desert with sand dunes, rocky outcrops, sparse shrubs, and clear blue sky or realistic atmospheric haze.",
-    "Upscale Plaza": "Placed in an urban plaza with paved areas, modern benches, minimalistic sculptures, and surrounding buildings reflecting sunlight naturally.",
-    "Golf Course Sunrise": "Situated on a landscaped golf course at sunrise, with dew on grass, rolling greens, scattered trees, and soft morning light.",
-    "Waterfront Promenade": "Located along a riverfront or marina, with yachts or boats docked, modern buildings nearby, and realistic reflections on water surfaces.",
-    "Street Food Market": "Set in an urban market with vendor stalls, subtle human activity, steam or smoke effects from cooking, and realistic lighting.",
-    "Botanical Garden": "Placed in a curated garden with walking paths, diverse plant species, small water features, and soft natural light.",
-    "Highway Interchange Night": "Set beside a highway junction at night, with moving traffic, light streaks, overpasses, and urban lighting in the background.",
-    "Glaciated Mountain Pass": "Situated on a remote snowy or glaciated mountain pass, with realistic snow textures, rocky formations, and overcast or diffused lighting.",
-    "Luxury Resort": "Set in a high-end resort environment, featuring pools, landscaped gardens, palm trees, villas or buildings, and natural daylight.",
-    "Financial District": "Placed in a modern business district with glass skyscrapers, paved streets, sparse pedestrian or vehicle activity, realistic reflections.",
-    "Abandoned Industrial": "Situated in an industrial area with old factories, rusted metal structures, weathered concrete, and subtle overgrown vegetation.",
-    "University Campus Quad": "Academic buildings, open quad areas, pathways, trees, students walking, benches, and natural daylight.",
-    "Historic Cathedral Square": "Placed in front of a historic cathedral or plaza, featuring stone pavement, ornate architecture, light pedestrian activity, and natural daylight.",
-    "Data Center Park": "Situated in a modern tech campus with low-rise uniform buildings, controlled landscaping, paved service roads, and realistic outdoor lighting.",
-    "Volcanic Sand Beach": "Located on a black sand beach with volcanic rocks, waves realistically interacting with the shoreline, and cloudy or dramatic sky.",
-    "Train Station Concourse": "Set inside or in front of a realistic train station concourse, with high ceilings, structural details, commuters, and subtle natural or artificial lighting.",
-    "High-Tech Agricultural": "Placed in a modern farm environment with controlled crop rows, greenhouses or automated structures, and daylight illuminating the scene.",
-    "Temperate River": "Situated alongside a flowing river in a temperate forest, with realistic rocks, trees, water reflections, and natural sunlight.",
-    "Exclusive Residential": "Set in a gated or exclusive neighborhood, with architecturally distinct houses, private gardens, and tree-lined streets.",
-    "Art District": "Located in a creative urban neighborhood, with murals, small galleries, street furniture, and subtle pedestrian activity.",
-    "Reflective Salt Flat": "Set on a flat reflective surface, like a salt flat, with water or reflective ground, distant horizon, and natural sky lighting.",
-    # Extended + new contexts
-    "Residential Area – Suburban":"Calm suburban streets with detached houses, gardens, tree-lined roads, parked cars, and soft daylight.",
-    "Residential Area – Urban":"High-density apartment blocks or townhouses, narrow streets, sidewalks, light pedestrian activity, realistic urban lighting.",
-    "Riverside Residential":"Houses or low-rise apartments along a riverbank, trees lining the shore, calm water reflections, and natural daylight.",
-    "Urban Market / Street Market":"Busy city market with stalls, colorful canopies, light pedestrian activity, realistic street materials, and soft shadows.",
-    "Supermarket / Retail Complex":"Modern supermarket or retail plaza, with surrounding parking, signage, pedestrian access, and realistic urban lighting.",
-    "Urban Street / Downtown":"City street with mixed-use buildings, sidewalks, streetlights, sparse traffic, and natural daylight.",
-    "Hospital / Medical Campus":"Modern hospital or clinic complex, structured building layout, surrounding pathways, parking areas, and realistic lighting.",
-    "School Campus":"Primary or secondary school campus, playgrounds, low-rise buildings, trees, sidewalks, and daylight illumination.",
-    "University Campus":"Academic buildings, open quad areas, pathways, trees, students walking, benches, and natural daylight.",
-    "Office / Company Campus":"Modern office buildings, structured outdoor areas, parking lots, landscaped areas, and soft daylight.",
-    "Urban Green Park":"City park with lawns, walking paths, benches, trees, small water features, and light pedestrian activity.",
-    "Public Parking Lot":"Open or multi-story parking area with vehicles, painted lines, pedestrian walkways, and realistic urban lighting.",
-    "Riverside / Waterfront Urban":"Buildings along a river or canal, boardwalks, small boats, landscaped pathways, and natural reflections.",
-    "Mixed-use Urban Development":"Combination of residential, commercial, and leisure buildings in a city block, streets, pedestrian areas, and realistic urban materials.",
-    "Industrial / Warehouse Area":"Functional industrial buildings, loading docks, paved roads, vehicles, and realistic daylight or artificial lighting.",
-    "Transport Hub – Bus / Train Station":"Busy station with platforms, benches, signage, people walking, and realistic artificial lighting.",
-    "Community Center / Civic Plaza":"Public open space surrounded by civic buildings, benches, fountains, trees, and soft daylight.",
-    "Riverside Park / Recreation Area":"Park along a river, landscaped lawns, walking paths, small bridges, trees, and calm water reflections.",
-    "Urban Intersection / Street Network":"City streets intersecting, traffic signals, pedestrian crossings, vehicles, and street furniture in realistic daylight.",
-    "Hospital Rooftop / Helipad Area":"Rooftop of a modern hospital with helipad, safety barriers, mechanical structures, and realistic light/shadow play.",
-    # Additional 20 general render types
-    "Pedestrian Street / Promenade":"A lively walkway with shops and cafés, light foot traffic, benches, street lamps, and urban greenery.",
-    "Urban Plaza / Square":"Open city square with paving, surrounding buildings, fountains or sculptures, pedestrians, and realistic daylight.",
-    "Residential Courtyard":"Inner courtyard of apartment buildings or townhouses, landscaped with plants, seating areas, and soft sunlight.",
-    "Riverside Walkway":"Promenade along a calm river with benches, small trees, pathways, and reflections on the water.",
-    "Parking Garage / Multilevel Parking":"Structured parking area with vehicles, ramps, signage, and artificial lighting.",
-    "Suburban Shopping Street":"Low-rise retail buildings, sidewalks, cars, pedestrians, and trees along the street.",
-    "Industrial Park / Logistics Area":"Cluster of warehouses and factories with loading docks, service roads, trucks, and minimal greenery.",
-    "University Library Area":"Modern library building with outdoor study areas, pathways, benches, and students walking.",
-    "Hospital Entrance / Ambulance Area":"Hospital main entrance with drop-off lanes, landscaped areas, signage, and realistic lighting.",
-    "School Playground / Sports Area":"Outdoor school yard with sports facilities, trees, walkways, and children or people in daylight.",
-    "Botanical Conservatory / Greenhouse":"Glass-enclosed botanical structure, plants inside, surrounding walkways, and filtered sunlight.",
-    "Corporate Office Plaza":"Open plaza in front of office towers, paved areas, water features, landscaping, and soft urban lighting.",
-    "Mixed Residential & Retail Street":"Street with ground-level shops and upper-floor apartments, pedestrians, vehicles, and urban materials.",
-    "Community Park with Playground":"Green park with playground equipment, walking paths, trees, benches, and daylight illumination.",
-    "Harbor / Marina":"Small marina with moored boats, piers, low-rise buildings nearby, and calm water reflections.",
-    "Mountain Lodge / Resort Area":"Low-rise lodge in mountain setting, surrounding trees, pathways, and realistic daylight.",
-    "Urban Rooftop Garden":"Green rooftop space with seating, planters, solar panels, and surrounding urban skyline.",
-    "Bus Terminal / Transit Hub":"Bus terminal with platforms, waiting areas, vehicles, signage, and realistic pedestrian activity.",
-    "City Intersection with Roundabout":"Urban intersection with roundabout, vehicles, street signs, crosswalks, and moderate pedestrian activity.",
-    "Waterfront Park / Pier":"Public park along waterfront, with piers, benches, pathways, trees, and reflections on calm water."
-}
-
-# --- Site context sample images ---
-site_context_images = {
-    "Enhance Only (No Context)": "data/enhance_only.jpg",
-    "Modern Metropolis (Day)": "data/modern_day.jpg",
-    "Modern Metropolis (Night)": "data/modern_night.jpg",
-    "Suburban Neighborhood": "data/suburban_neighborhood.jpg",
-    "Historic European Street": "data/historic_european_street.jpg",
-    "Japanese Zen Garden": "data/japanese_zen_garden.jpg",
-    "Coastal Town": "data/coastal_town.jpg",
-    "Mountain Valley": "data/mountain_valley.jpg",
-    "Lush Forest": "data/lush_forest.jpg",
-    "Tropical Island Beach": "data/tropical_island_beach.jpg",
-    "Desert Landscape": "data/desert_landscape.jpg",
-    "Upscale Plaza": "data/upscale_plaza.jpg",
-    "Golf Course Sunrise": "data/golf_course_sunrise.jpg",
-    "Waterfront Promenade": "data/waterfront_promenade.jpg",
-    "Street Food Market": "data/street_food_market.jpg",
-    "Botanical Garden": "data/botanical_garden.jpg",
-    "Highway Interchange Night": "data/highway_interchange_night.jpg",
-    "Glaciated Mountain Pass": "data/glaciated_mountain_pass.jpg",
-    "Luxury Resort": "data/luxury_resort.jpg",
-    "Financial District": "data/financial_district.jpg",
-    "Abandoned Industrial": "data/abandoned_industrial.jpg",
-    "University Campus Quad": "data/university_campus_quad.jpg",
-    "Historic Cathedral Square": "data/historic_cathedral_square.jpg",
-    "Data Center Park": "data/data_center_park.jpg",
-    "Volcanic Sand Beach": "data/volcanic_sand_beach.jpg",
-    "Train Station Concourse": "data/train_station_concourse.jpg",
-    "High-Tech Agricultural": "data/high_tech_agricultural.jpg",
-    "Temperate River": "data/temperate_river.jpg",
-    "Exclusive Residential": "data/exclusive_residential.jpg",
-    "Art District": "data/art_district.jpg",
-    "Reflective Salt Flat": "data/reflective_salt_flat.jpg",
-    "Residential Area – Suburban": "data/residential_suburban.jpg",
-    "Residential Area – Urban": "data/residential_urban.jpg",
-    "Riverside Residential": "data/riverside_residential.jpg",
-    "Urban Market / Street Market": "data/urban_market.jpg",
-    "Supermarket / Retail Complex": "data/supermarket_retail.jpg",
-    "Urban Street / Downtown": "data/urban_street.jpg",
-    "Hospital / Medical Campus": "data/hospital_medical.jpg",
-    "School Campus": "data/school_campus.jpg",
-    "University Campus": "data/university_campus.jpg",
-    "Office / Company Campus": "data/office_campus.jpg",
-    "Urban Green Park": "data/urban_green_park.jpg",
-    "Public Parking Lot": "data/public_parking_lot.jpg",
-    "Riverside / Waterfront Urban": "data/riverside_waterfront.jpg",
-    "Mixed-use Urban Development": "data/mixed_use_urban.jpg",
-    "Industrial / Warehouse Area": "data/industrial_warehouse.jpg",
-    "Transport Hub – Bus / Train Station": "data/transport_hub.jpg",
-    "Community Center / Civic Plaza": "data/community_center.jpg",
-    "Riverside Park / Recreation Area": "data/riverside_park.jpg",
-    "Urban Intersection / Street Network": "data/urban_intersection.jpg",
-    "Hospital Rooftop / Helipad Area": "data/hospital_rooftop.jpg",
-    "Pedestrian Street / Promenade": "data/pedestrian_street.jpg",
-    "Urban Plaza / Square": "data/urban_plaza.jpg",
-    "Residential Courtyard": "data/residential_courtyard.jpg",
-    "Riverside Walkway": "data/riverside_walkway.jpg",
-    "Parking Garage / Multilevel Parking": "data/parking_garage.jpg",
-    "Suburban Shopping Street": "data/suburban_shopping_street.jpg",
-    "Industrial Park / Logistics Area": "data/industrial_park.jpg",
-    "University Library Area": "data/university_library.jpg",
-    "Hospital Entrance / Ambulance Area": "data/hospital_entrance.jpg",
-    "School Playground / Sports Area": "data/school_playground.jpg",
-    "Botanical Conservatory / Greenhouse": "data/botanical_conservatory.jpg",
-    "Corporate Office Plaza": "data/corporate_office.jpg",
-    "Mixed Residential & Retail Street": "data/mixed_residential_retail.jpg",
-    "Community Park with Playground": "data/community_park_playground.jpg",
-    "Harbor / Marina": "data/harbor_marina.jpg",
-    "Mountain Lodge / Resort Area": "data/mountain_lodge.jpg",
-    "Urban Rooftop Garden": "data/urban_rooftop_garden.jpg",
-    "Bus Terminal / Transit Hub": "data/bus_terminal.jpg",
-    "City Intersection with Roundabout": "data/city_intersection.jpg",
-    "Waterfront Park / Pier": "data/waterfront_park.jpg"
+    "Enhance Only (No Context)": "Focus on enhancing the building itself without any external surroundings. Keep the background minimal and neutral.",
+    "Modern Metropolis (Day)": "Placed in a contemporary city during daytime, with clean streets, glass and steel skyscrapers, moderate pedestrian and vehicle activity under natural daylight.",
+    "Modern Metropolis (Night)": "Set in a modern urban area at night, with illuminated skyscrapers, streetlights reflecting on wet pavements, and scattered traffic.",
+    "Suburban Neighborhood": "A calm suburban area with houses, lawns, tree-lined streets, and soft daylight ambiance.",
+    "Historic European Street": "Set on a cobblestone street lined with historic European buildings, ornate facades, vintage street lamps, and pedestrians strolling.",
+    "Japanese Zen Garden": "A tranquil Japanese garden with raked gravel, koi ponds, stone lanterns, bamboo, and carefully placed plants.",
+    "Coastal Town": "A small coastal town with seafront promenade, boats in the harbor, small houses, and sparkling water under daylight.",
+    "Mountain Valley": "Nestled in a valley surrounded by majestic mountains, lush greenery, and a flowing river.",
+    "Lush Forest": "Dense forest with tall trees, sunlight filtering through leaves, moss-covered rocks, and serene natural atmosphere.",
+    "Tropical Island Beach": "White sand beach with turquoise water, palm trees, gentle waves, and bright sunlight.",
+    "Desert Landscape": "A vast desert with golden sand dunes, sparse vegetation, rocky formations, and clear skies.",
+    "Upscale Plaza": "A modern urban plaza with designer seating, sculptures, clean paving, and surrounding glass buildings.",
+    "Golf Course Sunrise": "A meticulously landscaped golf course at sunrise, with dew-covered grass, pristine greens, and distant trees in warm light.",
+    "Waterfront Promenade": "Contemporary waterfront with yachts docked, reflective surfaces, and modern apartments nearby.",
+    "Street Food Market": "Lively multi-ethnic street market with steam from stalls, colorful signs, and diverse crowds enjoying food.",
+    "Botanical Garden": "Serene botanical garden with diverse plants, greenhouses, walking paths, and sunlight filtering through trees.",
+    "Highway Interchange Night": "Busy highway interchange at night, with streaks of car lights, overpasses, and urban glow illuminating the scene.",
+    "Glaciated Mountain Pass": "Remote glaciated mountain pass with rocky cliffs, snow patches, and dramatic overcast sky.",
+    "Luxury Resort": "High-end resort with infinity pools, manicured gardens, palm trees, and ocean views under tropical sun.",
+    "Financial District": "Bustling financial district with glass-and-steel skyscrapers, suited professionals, and urban activity.",
+    "Abandoned Industrial": "Decaying industrial complex with rusted machinery, broken concrete structures, and overgrown vegetation.",
+    "University Campus Quad": "Vibrant university quad with historic academic buildings, students walking, and mature trees providing shade.",
+    "Historic Cathedral Square": "Grand cathedral square with ornate architecture, tourists, pigeons, and open plaza.",
+    "Data Center Park": "Modern data center park with rows of uniform buildings, minimalist landscaping, and service roads.",
+    "Volcanic Sand Beach": "Remote black sand beach with dramatic rocks, powerful waves, and moody sky.",
+    "Train Station Concourse": "Busy train station concourse with high ceilings, large boards, and commuters walking.",
+    "High-Tech Agricultural": "Advanced agricultural facility with automated crop rows, controlled lighting, and modern structures.",
+    "Temperate River": "Alongside a pristine river with clear water, smooth rocks, lush greenery, and dappled sunlight.",
+    "Exclusive Residential": "Private residential enclave with distinct homes, private gardens, and tree-lined streets.",
+    "Art District": "Vibrant art district with colorful murals, galleries, street performances, and bohemian atmosphere.",
+    "Reflective Salt Flat": "Open salt flat with reflective surface at sunset, dramatic sky, and horizon stretching infinitely.",
+    # Remaining site contexts can be added here with same style
 }
 
 # --- Internal Material Description ---
@@ -214,10 +108,6 @@ with col2:
     render_style = st.selectbox("Render Style", render_style_opts)
     site_context = st.selectbox("Site Context", site_context_opts)
     mood_style = st.selectbox("Mood / Style", mood_style_opts)
-
-# --- Show preview image ---
-if site_context in site_context_images:
-    st.image(site_context_images[site_context], caption=site_context, width=150)  # small preview, 150px wide
 
 st.subheader("Add Objects")
 furniture = st.checkbox("Furniture")
@@ -258,5 +148,5 @@ if st.button("Generate Prompt"):
     prompt += "Focus on realistic textures, materials, lighting, and perspective without adding predefined shapes or design elements.\n"
     prompt += "Preserve the building’s original forms and proportions as seen in the input image."
 
-    st.text_area("Generated Prompt", prompt, height=500)
+    st.text_area("Generated Prompt", prompt, height=400)
     st.success("Prompt generated! ✅ Copy manually to clipboard (works on mobile and PC).")
