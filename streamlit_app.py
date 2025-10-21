@@ -1,15 +1,26 @@
 import streamlit as st
 
+st.set_page_config(page_title="🏛️ AI Prompt Generator ✨", layout="wide")
+
 st.markdown("""
-<h1 style='text-align: center; color: #4B0082; animation: glow 1.5s ease-in-out infinite;'>
+<h1 style='
+    text-align: center; 
+    font-family: "Arial Black", sans-serif; 
+    font-size: 3em; 
+    background: linear-gradient(90deg, #FF6B6B, #FFD93D, #6BCB77, #4D96FF);
+    background-size: 300% 100%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: slideGradient 3s linear infinite;
+'>
 🏛️ AI Prompt Generator by Oak Sopheaktra ✨
 </h1>
 
 <style>
-@keyframes glow {
-  0% {text-shadow: 0 0 5px #FF5733, 0 0 10px #FF5733;}
-  50% {text-shadow: 0 0 20px #FFC300, 0 0 30px #FFC300;}
-  100% {text-shadow: 0 0 5px #FF5733, 0 0 10px #FF5733;}
+@keyframes slideGradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
 }
 </style>
 """, unsafe_allow_html=True)
