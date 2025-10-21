@@ -107,7 +107,7 @@ if page == "AI Prompt Generator":
 
         prompt = f"A highly detailed, photorealistic architectural rendering.\n"
         prompt += f"Materials: {material_description}.\n"
-        prompt += f"View / Camera Angle: {view_angle}\n"
+        prompt += f"View / Camera Angle: {'Keep the same viewpoint as the input image' if view_angle == 'Default Angle' else view_angle}\n"
         prompt += f"Depth of Field: {depth_of_field}\n"
         prompt += f"Motion Blur: {motion_blur}\n"
         prompt += f"Time of Day: {time_of_day}\n"
@@ -182,7 +182,7 @@ It **does not upload or analyze images** — it only generates AI prompts instru
         prompt += f"The AI should reinterpret and **change the building forms** while keeping proportionality and spatial logic.\n"
         prompt += f"Creative Intent: {creative_intent if creative_intent else 'Allow AI to explore innovative forms, massing, and structure.'}\n"
         prompt += f"Creativity Range: {creativity_level}%\n"
-        prompt += f"View / Camera Angle: {view_angle}\n"
+        prompt += f"View / Camera Angle: {'Maintain the same camera angle as the input image' if view_angle == 'Default Angle' else view_angle}\n"
         prompt += f"Time of Day: {time_of_day}\n"
         prompt += f"Weather: {weather}\n"
         prompt += f"Render Style: {render_style}\n"
