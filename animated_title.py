@@ -50,7 +50,6 @@ def show_animated_title(
 
     /* Sparkles */
     .luxury-title::before,
-    .luxury-title::center,
     .luxury-title::after {{
         content: "✨";
         position: absolute;
