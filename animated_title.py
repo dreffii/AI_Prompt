@@ -60,7 +60,7 @@ def show_animated_title(
     }}
 
     .luxury-title::before {{ top: -20px; left: 22%; animation-delay: 0s; }}
-    .luxury-title::after {{ top: -10px; right: 25%; animation-delay: 0.8s; }}
+    .luxury-title::after {{ top: -10px; right: 22%; animation-delay: 0.8s; }}
 
     @keyframes sparkle {{
         0%, 100% {{ opacity: 0; transform: scale(0.5) rotate(0deg); }}
