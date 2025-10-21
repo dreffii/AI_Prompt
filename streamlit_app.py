@@ -1,10 +1,10 @@
 import streamlit as st
 
-# --- App Configuration ---
+# --- App Title ---
 st.set_page_config(page_title="AI Prompt Generator by Oak Sopheaktra", layout="wide")
 st.title("AI Prompt Generator by Oak Sopheaktra")
 
-# --- Shared Dropdown Options ---
+# --- Variables for dropdowns ---
 view_angles = ["Default Angle","Professional Archviz","Eye-Level","High-Angle","Low-Angle","Aerial / Drone",
                "Close-up","Wide Shot","Bird's Eye View","View From Inside (Building to Outside)"]
 depth_of_field_opts = ["None","Subtle","Moderate","Strong"]
@@ -61,12 +61,12 @@ site_context_descriptions = {
     "Reflective Salt Flat": "Placed on a tranquil reflective salt flat at sunset, with a vast open horizon, mirror-like ground, and dramatic colorful sky.",
 }
 
+# Internal Material Description
 material_description = "accurately represent the materials visible in the input image (concrete, glass, wood, metal, etc.)"
 
-# ======================================================
-# ================== MAIN PAGE ========================
-# ======================================================
+# --- Layout ---
 col1, col2 = st.columns(2)
+
 with col1:
     view_angle = st.selectbox("View / Camera Angle", view_angles)
     depth_of_field = st.selectbox("Depth of Field", depth_of_field_opts)
@@ -90,9 +90,6 @@ trees = st.checkbox("Trees & Vegetation")
 street_furniture = st.checkbox("Street Furniture")
 foreground_elements = st.checkbox("Foreground Elements")
 
-# --- Creative Option ---
-creative_mode = st.checkbox("Enable Creative Generation (Change Building Forms)")
-
 # --- Generate Prompt ---
 if st.button("Generate Prompt"):
     selected_objects = ", ".join([obj for obj, val in {
@@ -104,7 +101,7 @@ if st.button("Generate Prompt"):
         "Foreground Elements": foreground_elements
     }.items() if val])
     
-    prompt = f"A highly detailed architectural rendering.\n"
+    prompt = f"A highly detailed, photorealistic architectural rendering.\n"
     prompt += f"Materials: {material_description}.\n"
     prompt += f"View / Camera Angle: {view_angle}\n"
     prompt += f"Depth of Field: {depth_of_field}\n"
@@ -118,12 +115,8 @@ if st.button("Generate Prompt"):
     prompt += f"Site Context: {site_context_descriptions.get(site_context, site_context)}\n"
     prompt += f"Mood / Style: {mood_style}\n"
     prompt += f"Objects included: {selected_objects if selected_objects else 'none'}.\n"
-
-    if creative_mode:
-        prompt += "Allow AI to creatively reinterpret the building's forms, proportions, and geometry while keeping the same camera view.\n"
-        prompt += "Focus on innovative architectural shapes, alternative massing, and new design ideas.\n"
-    else:
-        prompt += "Focus on realistic textures, materials, lighting, and perspective without changing the building's original forms.\n"
+    prompt += "Focus on realistic textures, materials, lighting, and perspective without adding predefined shapes or design elements.\n"
+    prompt += "Preserve the building’s original forms and proportions as seen in the input image."
 
     st.text_area("Generated Prompt", prompt, height=400)
-    st.success("✅ Prompt generated! Copy manually to clipboard (works on mobile and PC).")
+    st.success("Prompt generated! ✅ Copy manually to clipboard (works on mobile and PC).")
