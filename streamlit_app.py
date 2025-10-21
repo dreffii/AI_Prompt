@@ -101,7 +101,7 @@ with col2:
 
 # --- Show preview image ---
 if site_context in site_context_images:
-    st.image(site_context_images[site_context], caption=site_context, width=250)  # small preview, 250px wide
+    st.image(site_context_images[site_context], caption=site_context, width=100)  # small preview, 250px wide
 
 st.subheader("Add Objects")
 furniture = st.checkbox("Furniture")
