@@ -4,18 +4,18 @@ def show_animated_title(
     title="🏛️ AI Prompt Generator by Oak Sopheaktra",
     font_size="3em",
     text_color="#000000",
-    bounce_height="2px",
-    bounce_speed="5s"
+    bounce_height="3px",
+    bounce_speed="4s"
 ):
     """
     Display a luxury animated title with:
     - Subtle per-letter bounce
     - Random blinking sparkles
-    Parameters can be adjusted for customization.
+    Spaces are preserved.
     """
     
-    # Wrap each character in a span
-    wrapped_title = "".join(f"<span>{c}</span>" for c in title)
+    # Wrap each character in a span, replace space with &nbsp;
+    wrapped_title = "".join(f"<span>{c if c != ' ' else '&nbsp;'}</span>" for c in title)
 
     st.markdown(f"""
     <div class="luxury-title">{wrapped_title}</div>
