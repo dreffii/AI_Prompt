@@ -1,24 +1,18 @@
 import streamlit as st
-from streamlit_lottie import st_lottie
-import requests
 
-# --- Function to load Lottie JSON ---
-def load_lottieurl(url):
-    r = requests.get(url)
-    if r.status_code != 200:
-        return None
-    return r.json()
+st.markdown("""
+<h1 style='text-align: center; color: #4B0082; animation: glow 1.5s ease-in-out infinite;'>
+🏛️ AI Prompt Generator by Oak Sopheaktra ✨
+</h1>
 
-# --- App Title ---
-st.set_page_config(page_title="🏛️ AI Prompt Generator ✨", layout="wide")
-
-st.title("🏛️✨ AI Prompt Generator by Oak Sopheaktra ✨")
-st.subheader("🎨 Generate high-quality, photorealistic architectural prompts effortlessly 🏙️")
-
-# --- Lottie Animation ---
-lottie_animation = load_lottieurl("https://assets6.lottiefiles.com/packages/lf20_touohxv0.json")  # Example architecture animation
-if lottie_animation:
-    st_lottie(lottie_animation, height=150, key="archviz_animation")
+<style>
+@keyframes glow {
+  0% {text-shadow: 0 0 5px #FF5733, 0 0 10px #FF5733;}
+  50% {text-shadow: 0 0 20px #FFC300, 0 0 30px #FFC300;}
+  100% {text-shadow: 0 0 5px #FF5733, 0 0 10px #FF5733;}
+}
+</style>
+""", unsafe_allow_html=True)
 
 # --- Variables for dropdowns ---
 view_angles = ["Default Angle","Professional Archviz","Eye-Level","High-Angle","Low-Angle","Aerial / Drone",
