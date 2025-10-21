@@ -12,7 +12,7 @@ def show_animated_title():
         text-align: center;
         font-family: "Georgia", serif;
         font-size: 3em;
-        color: #FFFFFF;
+        color: #00000;
         text-shadow: 0 0 10px rgba(255,255,255,0.6), 0 0 20px rgba(255,255,255,0.4);
     }
 
