@@ -59,7 +59,7 @@ def show_animated_title(
         animation: sparkle 1.5s infinite;
     }}
 
-    .luxury-title::before {{ top: -20px; left: 25%; animation-delay: 0s; }}
+    .luxury-title::before {{ top: -20px; left: 22%; animation-delay: 0s; }}
     .luxury-title::after {{ top: -10px; right: 25%; animation-delay: 0.8s; }}
 
     @keyframes sparkle {{
