@@ -1,7 +1,7 @@
 import streamlit as st
 
 def show_animated_title(
-    title="🏛️ AI Prompt Generator by Oak Sopheaktra",
+    title="🤖 Prompt Generator by Oak Sopheaktra",
     font_size="3em",
     text_color="#000000",
     bounce_height="3px",
@@ -50,6 +50,7 @@ def show_animated_title(
 
     /* Sparkles */
     .luxury-title::before,
+    .luxury-title::center,
     .luxury-title::after {{
         content: "✨";
         position: absolute;
