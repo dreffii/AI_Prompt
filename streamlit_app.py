@@ -7,15 +7,25 @@ st.set_page_config(
 
 st.title("AI Prompt Generator by Oak Sopheaktra")
 
-st.markdown("""
-Welcome! This app helps you generate high-quality AI prompts for architectural renderings and concept development.
+# Sidebar page selection
+page = st.sidebar.selectbox(
+    "Select a page",
+    ["Home", "Prompt Generator", "Concept Development"]
+)
 
-Use the sidebar to navigate between pages:
+if page == "Home":
+    st.write("""
+    Welcome! This app helps you generate high-quality AI prompts for architectural renderings and concept development.
 
-- **Prompt Generator**: Generate standard architectural prompts.
-- **Concept Development**: Generate creative concept prompts to explore variations of your building designs.
+    Use the sidebar to navigate between pages:
 
-All dropdown options, site contexts, and prompt generation logic are managed in `utils.py` for easy maintenance.
-""")
+    - **Prompt Generator**: Generate standard architectural prompts.
+    - **Concept Development**: Generate creative concept prompts to explore variations of your building designs.
 
-st.info("Select a page from the left sidebar to get started.")
+    All dropdown options, site contexts, and prompt generation logic are managed in `utils.py` for easy maintenance.
+    """)
+elif page == "Prompt Generator":
+    # import the page code here
+    import pages._1_Prompt_Generator as pg
+elif page == "Concept Development":
+    import pages._2_Concept_Development as cd
