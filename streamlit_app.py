@@ -126,14 +126,14 @@ if page == "AI Prompt Generator":
         st.success("✅ Prompt generated! Copy manually to clipboard.")
 
 # ======================================================
-# ============  PAGE 2: CREATIVE CONCEPT DEV ===========
+# ============  PAGE 2: CREATIVE FORM DEVELOPER ===========
 # ======================================================
 else:
-    st.header("🎨 AI Concept Developer (Creative Options)")
+    st.header("🎨 AI Concept Developer (Creative Building Forms)")
 
     st.markdown("""
-This tool helps generate **creative reinterpretation prompts** for your architectural model.  
-It does **not upload or analyze images** — instead, it gives instructions for AI to develop **new design options** based on your reference concept.
+This tool generates **creative reinterpretation prompts** for your architectural model.  
+It **does not upload or analyze images** — it only generates AI prompts instructing the model to create **alternative building forms** based on your reference concept.
 """)
 
     col1, col2 = st.columns(2)
@@ -152,9 +152,13 @@ It does **not upload or analyze images** — instead, it gives instructions for 
         mood_style = st.selectbox("Mood / Style", mood_style_opts)
 
     st.subheader("Creativity Options")
-    creative_intent = st.text_input("Describe your creative direction",
-        placeholder="e.g. More futuristic, curved, organic, sustainable, or parametric reinterpretation...")
-    creativity_level = st.slider("AI Creativity Range (Low = conservative, High = experimental)", 0, 100, 50)
+    creative_intent = st.text_input(
+        "Describe the kind of transformation for the building form",
+        placeholder="e.g. more futuristic, curved, biomorphic, parametric, organic shapes, deconstructivist..."
+    )
+    creativity_level = st.slider(
+        "AI Creativity Range (Low = minor changes, High = radical transformations)", 0, 100, 50
+    )
 
     st.subheader("Add Objects")
     furniture = st.checkbox("Furniture")
@@ -164,7 +168,7 @@ It does **not upload or analyze images** — instead, it gives instructions for 
     street_furniture = st.checkbox("Street Furniture")
     foreground_elements = st.checkbox("Foreground Elements")
 
-    if st.button("Generate Creative Concept Prompt"):
+    if st.button("Generate Creative Form Prompt"):
         selected_objects = ", ".join([obj for obj, val in {
             "Furniture": furniture,
             "Vehicles (Cars, Bikes)": vehicles,
@@ -174,9 +178,9 @@ It does **not upload or analyze images** — instead, it gives instructions for 
             "Foreground Elements": foreground_elements
         }.items() if val])
 
-        prompt = f"AI concept development prompt based on an existing architectural design.\n"
-        prompt += f"The AI should reinterpret the structure creatively — maintaining recognizable context but introducing innovation.\n"
-        prompt += f"Creative Intent: {creative_intent if creative_intent else 'Allow balanced creativity with contextual logic.'}\n"
+        prompt = f"AI creative prompt for architectural design reimagination.\n"
+        prompt += f"The AI should reinterpret and **change the building forms** while keeping proportionality and spatial logic.\n"
+        prompt += f"Creative Intent: {creative_intent if creative_intent else 'Allow AI to explore innovative forms, massing, and structure.'}\n"
         prompt += f"Creativity Range: {creativity_level}%\n"
         prompt += f"View / Camera Angle: {view_angle}\n"
         prompt += f"Time of Day: {time_of_day}\n"
@@ -185,7 +189,7 @@ It does **not upload or analyze images** — instead, it gives instructions for 
         prompt += f"Site Context: {site_context_descriptions.get(site_context, site_context)}\n"
         prompt += f"Mood / Style: {mood_style}\n"
         prompt += f"Objects included: {selected_objects if selected_objects else 'none'}.\n"
-        prompt += "Do not replicate the input exactly — reimagine it with proportional consistency and innovative design language."
+        prompt += "Do not replicate the input building exactly — focus on new shapes, innovative geometry, alternative massing, and creative architectural forms."
 
-        st.text_area("Generated Creative Prompt", prompt, height=400)
-        st.success("🎨 Creative prompt generated! Copy manually to clipboard.")
+        st.text_area("Generated Creative Form Prompt", prompt, height=400)
+        st.success("🎨 Creative building form prompt generated! Copy manually to clipboard.")
