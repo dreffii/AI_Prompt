@@ -23,11 +23,11 @@ def show_animated_title():
 
     .luxury-title span {
         display: inline-block;
-        animation: bounce 6s infinite; /* Slower & longer bounce */
+        animation: bounce 4s infinite; /* slower */
         animation-delay: calc(var(--i) * 0.1s);
     }
 
-    /* Assign --i index for staggered animation */
+    /* Staggered bounce delay */
     .luxury-title span:nth-child(1) { --i: 0; }
     .luxury-title span:nth-child(2) { --i: 1; }
     .luxury-title span:nth-child(3) { --i: 2; }
@@ -61,10 +61,10 @@ def show_animated_title():
 
     @keyframes bounce {
         0%, 100% { transform: translateY(0); }
-        50% { transform: translateY(-8px); } /* Slight, elegant bounce */
+        50% { transform: translateY(-3px); } /* short bounce */
     }
 
-    /* Optional subtle sparkles */
+    /* Optional sparkles around the text */
     .luxury-title::before,
     .luxury-title::after {
         content: "✨";
@@ -72,11 +72,11 @@ def show_animated_title():
         font-size: 1em;
         color: #FFD700;
         opacity: 0;
-        animation: sparkle 3s infinite;
+        animation: sparkle 1.5s infinite;
     }
 
     .luxury-title::before { top: -20px; left: 20%; animation-delay: 0s; }
-    .luxury-title::after { top: -10px; right: 25%; animation-delay: 1.5s; }
+    .luxury-title::after { top: -10px; right: 25%; animation-delay: 0.8s; }
 
     @keyframes sparkle {
         0%, 100% { opacity: 0; transform: scale(0.5) rotate(0deg);}
