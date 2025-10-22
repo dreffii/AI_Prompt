@@ -94,26 +94,10 @@ def show_page_1():
         prompt += "Focus on realistic textures, materials, lighting, and perspective without adding predefined shapes or design elements.\n"
         prompt += "Preserve the building’s original forms and proportions as seen in the input image."
         
-        # Store prompt in session state so JS can access it
-        st.session_state["generated_prompt"] = prompt
+        st.text_area("Generated Prompt", prompt, height=400)
         
-        # Show text area
-        st.text_area("Generated Prompt", prompt, height=400, key="prompt_area")
-        
-        # Copy button using HTML + JS
-        st.markdown(f"""
-        <div style="margin-top: 10px;">
-            <button onclick="
-                const textArea = document.querySelector('#prompt_area textarea');
-                textArea.select();
-                textArea.setSelectionRange(0, 99999);  // For mobile devices
-                document.execCommand('copy');
-                alert('Prompt copied to clipboard ✅');
-            ">📋 Copy Prompt</button>
-        </div>
-        """, unsafe_allow_html=True)
-        
-        st.success("Prompt generated! ✅ You can click the copy button above.")
+        st.success("Prompt generated! ✅ Copy manually to clipboard (works on mobile and PC).")
+
 
 
 
