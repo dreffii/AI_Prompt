@@ -37,30 +37,30 @@ def show_page_1():
 
     # --- Layout ---
     col1, col2 = st.columns(2)
-
+    
     with col1:
-        view_angle = st.selectbox("View / Camera Angle", view_angles)
-        depth_of_field = st.selectbox("Depth of Field", depth_of_field_opts)
-        motion_blur = st.selectbox("Motion Blur", motion_blur_opts)
-        time_of_day = st.selectbox("Time of Day", time_of_day_opts)
-        weather = st.selectbox("Weather", weather_opts)
-        wind_strength = st.selectbox("Wind Strength", wind_strength_opts)
-        interior_lights = st.selectbox("Interior Lights", interior_lights_opts)
-
+        view_angle = st.selectbox("🎥 View / Camera Angle", view_angles)
+        depth_of_field = st.selectbox("🔍 Depth of Field", depth_of_field_opts)
+        motion_blur = st.selectbox("💨 Motion Blur", motion_blur_opts)
+        time_of_day = st.selectbox("🌞 Time of Day", time_of_day_opts)
+        weather = st.selectbox("🌦 Weather", weather_opts)
+        wind_strength = st.selectbox("🌬 Wind Strength", wind_strength_opts)
+        interior_lights = st.selectbox("💡 Interior Lights", interior_lights_opts)
+    
     with col2:
-        active_reflection = st.selectbox("Active Reflection", active_reflection_opts)
-        render_style = st.selectbox("Render Style", render_style_opts)
-        site_context = st.selectbox("Site Context", site_context_opts)
-        additional_site_prompt = st.text_area("Additional Prompt (optional)", placeholder="Add any extra description or context for the site...")
-        mood_style = st.selectbox("Mood / Style", mood_style_opts)
-
-    st.subheader("Add Objects")
-    furniture = st.checkbox("Furniture")
-    vehicles = st.checkbox("Vehicles (Cars, Bikes)")
-    people = st.checkbox("People")
-    trees = st.checkbox("Trees & Vegetation")
-    street_furniture = st.checkbox("Street Furniture")
-    foreground_elements = st.checkbox("Foreground Elements")
+        active_reflection = st.selectbox("✨ Active Reflection", active_reflection_opts)
+        render_style = st.selectbox("🎨 Render Style", render_style_opts)
+        site_context = st.selectbox("🏙 Site Context", site_context_opts)
+        mood_style = st.selectbox("🎭 Mood / Style", mood_style_opts)
+    
+    # --- Add Objects ---
+    st.subheader("🛠 Add Objects")
+    furniture = st.checkbox("🪑 Furniture")
+    vehicles = st.checkbox("🚗 Vehicles (Cars, Bikes)")
+    people = st.checkbox("🧑 People")
+    trees = st.checkbox("🌳 Trees & Vegetation")
+    street_furniture = st.checkbox("🪑 Street Furniture")
+    foreground_elements = st.checkbox("🌟 Foreground Elements")
 
     # --- Generate Prompt ---
     if st.button("Generate Prompt"):
@@ -97,6 +97,7 @@ def show_page_1():
         st.text_area("Generated Prompt", prompt, height=400)
         
         st.success("Prompt generated! ✅ Copy generated prompt and paste the AI prompt🐼")
+
 
 
 
