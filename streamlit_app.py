@@ -8,12 +8,12 @@ st.sidebar.title("🧭 Navigation")
 
 # Save selected page in session_state
 if "page" not in st.session_state:
-    st.session_state.page = "Prompt Generator"
+    st.session_state.page = "Prompt Generator 🐰"
 
 page = st.sidebar.radio(
     "Go to:",
     ["Prompt Generator", "Blank Page"],
-    index=0 if st.session_state.page == "Prompt Generator" else 1,
+    index=0 if st.session_state.page == "Prompt Generator 🐰" else 1,
     label_visibility="collapsed"
 )
 
