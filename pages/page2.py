@@ -1,11 +1,11 @@
 import streamlit as st
 from animated_title import show_animated_title
-from data.site_contexts import site_context_descriptions, site_context_opts  # ✅ import descriptions
+from data.site_contexts import site_context_descriptions, site_context_opts
 
 def show_page_2():
     st.set_page_config(page_title="🏛️ Concept Developer ✨", layout="wide")
 
-    # Show animated title
+    # Animated title
     show_animated_title()
 
     # --- Variables for dropdowns ---
@@ -27,11 +27,9 @@ def show_page_2():
     render_style_opts = ["Default","Photorealistic","Ultra Realistic","Interior Design","Isometric","Axonometric View",
                          "Architectural Presentation","Explosion Analysis","Handmade Wooden Model","Concept Sketch",
                          "Under Construction","Architect's Desk","Mood Board"]
-    mood_style_opts = [
-        "Default","neutral","modern","minimalist","classic","futuristic","conceptual",
-        "artistic","natural","surreal","urban","abstract","industrial","romantic",
-        "dramatic","luxurious","dark","bright","cinematic","fantasy","storytelling"
-    ]
+    mood_style_opts = ["Default","neutral","modern","minimalist","classic","futuristic","conceptual",
+                       "artistic","natural","surreal","urban","abstract","industrial","romantic",
+                       "dramatic","luxurious","dark","bright","cinematic","fantasy","storytelling"]
     corner_style_opts = ["Default","Sharp", "Curved", "Mixed"]
     terrace_connection_opts = ["Default","None", "Single Curve", "Double Curve", "Custom LED Edge"]
     material_opts = ["Default","Glass", "Concrete", "Metal", "Mixed"]
@@ -49,7 +47,6 @@ def show_page_2():
         weather = st.selectbox("Weather", weather_opts)
         wind_strength = st.selectbox("Wind Strength", wind_strength_opts)
         interior_lights = st.selectbox("Interior Lights", interior_lights_opts)
-
     with col2:
         active_reflection = st.selectbox("Active Reflection", active_reflection_opts)
         render_style = st.selectbox("Render Style", render_style_opts)
@@ -62,14 +59,20 @@ def show_page_2():
         corner_style = st.selectbox("Corner Style", corner_style_opts)
         terrace_connection = st.selectbox("Terrace Connection", terrace_connection_opts)
         material = st.selectbox("Material", material_opts)
+        # --- Objects checkboxes like Page 1 ---
+        furniture = st.checkbox("Furniture")
+        vehicles = st.checkbox("Vehicles (Cars, Bikes)")
+        people = st.checkbox("People")
+        trees = st.checkbox("Trees & Vegetation")
     with col4:
         lighting_edge = st.selectbox("Lighting Edge", lighting_edge_opts)
         building_volume_adjustment = st.selectbox("Building Volume Adjustment", building_volume_adjustment_opts)
         additional_prompt = st.text_area("Additional Notes / Custom Prompt", placeholder="Optional extra instructions...")
+        street_furniture = st.checkbox("Street Furniture")
+        foreground_elements = st.checkbox("Foreground Elements")
 
     # --- Generate Prompt ---
     if st.button("Generate Concept Prompt"):
-        # Helper: include in prompt only if not Default, except view angle
         def include_val(name, val, always_include=False):
             if always_include or not val.startswith("Default"):
                 return f"{name}: {val}\n"
@@ -97,6 +100,20 @@ def show_page_2():
         prompt += include_val("Material", material)
         prompt += include_val("Lighting Edge", lighting_edge)
         prompt += include_val("Building Volume Adjustment", building_volume_adjustment)
+
+        # Objects
+        selected_objects = ", ".join([obj for obj, val in {
+            "Furniture": furniture,
+            "Vehicles (Cars, Bikes)": vehicles,
+            "People": people,
+            "Trees & Vegetation": trees,
+            "Street Furniture": street_furniture,
+            "Foreground Elements": foreground_elements
+        }.items() if val])
+        if selected_objects:
+            prompt += f"Objects included: {selected_objects}\n"
+
+        # Additional prompt
         if additional_prompt.strip():
             prompt += f"Additional Notes: {additional_prompt}\n"
 
@@ -104,4 +121,3 @@ def show_page_2():
 
         st.text_area("Generated Concept Prompt", prompt, height=400)
         st.success("Concept Prompt generated! ✅ Copy manually to clipboard (works on mobile and PC).")
-
