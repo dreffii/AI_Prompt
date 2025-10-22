@@ -93,9 +93,17 @@ def show_page_1():
         prompt += f"Objects included: {selected_objects if selected_objects else 'none'}.\n"
         prompt += "Focus on realistic textures, materials, lighting, and perspective without adding predefined shapes or design elements.\n"
         prompt += "Preserve the building’s original forms and proportions as seen in the input image."
-
+        
+        # Display prompt in text_area
         st.text_area("Generated Prompt", prompt, height=400)
+        
+        # Copy to clipboard button
+        if st.button("📋 Copy Prompt"):
+            st.clipboard_set(prompt)
+            st.success("Prompt copied to clipboard! ✅")
+        
         st.success("Prompt generated! ✅ Copy manually to clipboard (works on mobile and PC).")
+
 
 
 
