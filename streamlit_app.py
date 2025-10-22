@@ -8,12 +8,12 @@ st.sidebar.title("🧭 Navigation")
 
 # Save selected page in session_state
 if "page" not in st.session_state:
-    st.session_state.page = "Prompt Generator 🐰"
+    st.session_state.page = "Render Prompt 🐰"
 
 page = st.sidebar.radio(
     "Go to:",
-    ["Prompt Generator 🐰", "Concept Prompt 🐻‍❄️"],
-    index=0 if st.session_state.page == "Prompt Generator 🐰" else 1,
+    ["Render Prompt 🐰", "Concept Prompt 🐻‍❄️"],
+    index=0 if st.session_state.page == "Render Prompt 🐰" else 1,
     label_visibility="collapsed"
 )
 
@@ -26,7 +26,7 @@ st.sidebar.markdown("**Created by Oak Sopheaktra👾**")  # your credit
 # st.sidebar.image("data/IMG_3172.PNG", use_container_width=True)
 
 # --- Load Pages Dynamically ---
-if st.session_state.page == "Prompt Generator 🐰":
+if st.session_state.page == "Render Prompt 🐰":
     from pages.page1 import show_page_1
     show_page_1()
 elif st.session_state.page == "Concept Prompt 🐻‍❄️":
