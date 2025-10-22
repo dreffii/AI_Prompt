@@ -6,6 +6,29 @@ st.set_page_config(page_title="🏛️ AI Prompt Generator ✨", layout="wide")
 # Show animated title
 show_animated_title()
 
+# --- Sidebar Navigation ---
+st.sidebar.title("🧭 Navigation")
+
+# Store active page in session_state
+if "page" not in st.session_state:
+    st.session_state.page = "Prompt Generator"
+
+page = st.sidebar.radio(
+    "Go to:",
+    ["Prompt Generator", "Blank Page"],
+    index=0 if st.session_state.page == "Prompt Generator" else 1,
+    label_visibility="collapsed"
+)
+st.session_state.page = page
+
+# --- Load Pages Dynamically ---
+if st.session_state.page == "Prompt Generator":
+    from pages.page1_prompt_generator import show_prompt_page
+    show_prompt_page()
+elif st.session_state.page == "Blank Page":
+    st.title("📝 Blank Page")
+    st.write("This is a blank page for testing.")
+
 # --- Variables for dropdowns ---
 view_angles = ["Default Angle","Professional Archviz","Eye-Level","High-Angle","Low-Angle","Aerial / Drone",
                "Close-up","Wide Shot","Bird's Eye View","View From Inside (Building to Outside)"]
@@ -193,3 +216,4 @@ if st.button("Generate Prompt"):
 
     st.text_area("Generated Prompt", prompt, height=400)
     st.success("Prompt generated! ✅ Copy manually to clipboard (works on mobile and PC).")
+
