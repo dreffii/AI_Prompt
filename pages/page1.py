@@ -31,26 +31,26 @@ def show_page_1():
                          "Architectural Presentation","Explosion Analysis","Handmade Wooden Model","Concept Sketch",
                          "Under Construction","Architect's Desk","Mood Board"]
     mood_style_opts = [
-        "🟢 Neutral",
-        "🏙 Modern",
-        "🪞 Minimalist",
-        "🏛 Classic",
-        "🚀 Futuristic",
-        "💡 Conceptual",
-        "🎨 Artistic",
-        "🌿 Natural",
-        "🌌 Surreal",
-        "🌉 Urban",
-        "🧩 Abstract",
-        "🏗 Industrial",
-        "🌸 Romantic",
-        "🔥 Dramatic",
-        "✨ Luxurious",
-        "🌑 Dark",
-        "🌞 Bright",
-        "🎭 Cinematic",
-        "🌀 Fantasy",
-        "🎬 Storytelling"
+        "neutral",
+        "modern",
+        "minimalist",
+        "classic",
+        "futuristic",
+        "conceptual",
+        "artistic",
+        "natural",
+        "surreal",
+        "urban",
+        "abstract",
+        "industrial",
+        "romantic",
+        "dramatic",
+        "luxurious",
+        "dark",
+        "bright",
+        "cinematic",
+        "fantasy",
+        "storytelling"
     ]
 
     # --- Internal Material Description ---
@@ -118,6 +118,7 @@ def show_page_1():
         st.text_area("Generated Prompt", prompt, height=400)
         
         st.success("Prompt generated! ✅ Copy generated prompt and paste the AI prompt🐼")
+
 
 
 
