@@ -27,9 +27,29 @@ def show_page_2():
     render_style_opts = ["Default","Photorealistic","Ultra Realistic","Interior Design","Isometric","Axonometric View",
                          "Architectural Presentation","Explosion Analysis","Handmade Wooden Model","Concept Sketch",
                          "Under Construction","Architect's Desk","Mood Board"]
-    mood_style_opts = ["Default","neutral","modern","minimalist","classic","futuristic","conceptual",
-                       "artistic","natural","surreal","urban","abstract","industrial","romantic",
-                       "dramatic","luxurious","dark","bright","cinematic","fantasy","storytelling"]
+    mood_style_opts = [
+        "neutral",
+        "modern",
+        "minimalist",
+        "classic",
+        "futuristic",
+        "conceptual",
+        "organic",
+        "artistic",
+        "natural",
+        "surreal",
+        "urban",
+        "abstract",
+        "industrial",
+        "romantic",
+        "dramatic",
+        "luxurious",
+        "dark",
+        "bright",
+        "cinematic",
+        "fantasy",
+        "storytelling"
+    ]
     corner_style_opts = ["Default","Sharp", "Curved", "Mixed"]
     terrace_connection_opts = ["Default","None", "Single Curve", "Double Curve", "Custom LED Edge"]
     material_opts = ["Default","Glass", "Concrete", "Metal", "Mixed"]
@@ -121,3 +141,4 @@ def show_page_2():
 
         st.text_area("Generated Concept Prompt", prompt, height=400)
         st.success("Concept Prompt generated! ✅ Copy manually to clipboard (works on mobile and PC).")
+
