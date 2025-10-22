@@ -26,7 +26,7 @@ st.sidebar.markdown("**Created by Oak Sopheaktra👾**")  # your credit
 # st.sidebar.image("data/IMG_3172.PNG", use_container_width=True)
 
 # --- Load Pages Dynamically ---
-if st.session_state.page == "Prompt Generator":
+if st.session_state.page == "Prompt Generator 🐰":
     from pages.page1 import show_page_1
     show_page_1()
 elif st.session_state.page == "Blank Page":
