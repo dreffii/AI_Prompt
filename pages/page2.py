@@ -8,44 +8,42 @@ def show_page_2():
     # Show animated title
     show_animated_title()
 
-    # --- Variables (Page 1 + Concept Development) ---
-    view_angles = ["Default Angle","Professional Archviz","Eye-Level","High-Angle","Low-Angle","Aerial / Drone",
-                   "Close-up","Wide Shot","Bird's Eye View","View From Inside (Building to Outside)"]
+    # --- Variables with default "Keep as input image" ---
+    view_angles = ["Keep as input image","Default Angle","Professional Archviz","Eye-Level","High-Angle","Low-Angle",
+                   "Aerial / Drone","Close-up","Wide Shot","Bird's Eye View","View From Inside (Building to Outside)"]
 
-    depth_of_field_opts = ["None","Subtle","Moderate","Strong"]
-    motion_blur_opts = ["None","Light","Medium","Heavy"]
-
-    time_of_day_opts = [
+    depth_of_field_opts = ["Keep as input image","None","Subtle","Moderate","Strong"]
+    motion_blur_opts = ["Keep as input image","None","Light","Medium","Heavy"]
+    time_of_day_opts = ["Keep as input image"] + [
         "Day","Soft Daylight","Midday Sun","Night","Golden Hour","Blue Hour","Dawn","Dusk","Archviz Daylight",
         "Purple Hour","Evening","Sunrise","Sunset","Early Morning","Late Afternoon","Twilight","Moonlit Night",
         "Foggy Morning","Overcast Noon","Rainy Afternoon","Stormy Evening","Snowy Morning","Winter Sunset",
         "Summer Sunrise","Autumn Evening","Spring Twilight","Cloudy Afternoon","Evening Glow","Evening Mist",
         "Warm Sunset","Cold Sunrise","Night with Streetlights","Misty Morning","Foggy Evening","Purple Twilight"
     ]
+    weather_opts = ["Keep as input image","Clear","Overcast","Rainy","Light Rain","Stormy","Foggy","Snowy"]
+    wind_strength_opts = ["Keep as input image","None","Light Breeze","Strong Wind"]
+    interior_lights_opts = ["Keep as input image","On","Off"]
+    active_reflection_opts = ["Keep as input image","None","Subtle","Moderate","Strong"]
+    render_style_opts = ["Keep as input image","Photorealistic","Ultra Realistic","Interior Design","Isometric",
+                         "Axonometric View","Architectural Presentation","Explosion Analysis",
+                         "Handmade Wooden Model","Concept Sketch","Under Construction","Architect's Desk","Mood Board"]
 
-    weather_opts = ["Clear","Overcast","Rainy","Light Rain","Stormy","Foggy","Snowy"]
-    wind_strength_opts = ["None","Light Breeze","Strong Wind"]
-    interior_lights_opts = ["On","Off"]
-    active_reflection_opts = ["None","Subtle","Moderate","Strong"]
-    render_style_opts = ["Photorealistic","Ultra Realistic","Interior Design","Isometric","Axonometric View",
-                         "Architectural Presentation","Explosion Analysis","Handmade Wooden Model","Concept Sketch",
-                         "Under Construction","Architect's Desk","Mood Board"]
-
-    mood_style_opts = [
+    mood_style_opts = ["Keep as input image"] + [
         "neutral","modern","minimalist","classic","futuristic","conceptual","artistic","natural","surreal",
         "urban","abstract","industrial","romantic","dramatic","luxurious","dark","bright","cinematic",
         "fantasy","storytelling"
     ]
 
-    # --- Concept Development Specific Variables ---
-    corner_style_opts = ["Sharp", "Curved", "Mixed"]
-    terrace_connection_opts = ["None", "Single Curve", "Double Curve", "Custom LED Edge"]
-    material_opts = ["Glass", "Concrete", "Metal", "Mixed"]
-    lighting_edge_opts = ["None", "LED Warm White", "LED Cool White", "LED RGB"]
-    building_volume_adjustment_opts = ["Default", "Increase Height", "Decrease Height", "Adjust Proportions"]
-    roof_profile_opts = ["Flat", "Sloped", "Curved", "Custom"]
-    floor_count_opts = list(range(1, 21))  # numeric input
-    focus_area_opts = ["Front Facade", "Rooftop Terrace", "Corner Detailing", "Full Building"]
+    # Concept-specific options with default
+    corner_style_opts = ["Keep as input image","Sharp", "Curved", "Mixed"]
+    terrace_connection_opts = ["Keep as input image","None", "Single Curve", "Double Curve", "Custom LED Edge"]
+    material_opts = ["Keep as input image","Glass", "Concrete", "Metal", "Mixed"]
+    lighting_edge_opts = ["Keep as input image","None", "LED Warm White", "LED Cool White", "LED RGB"]
+    building_volume_adjustment_opts = ["Keep as input image","Default", "Increase Height", "Decrease Height", "Adjust Proportions"]
+    roof_profile_opts = ["Keep as input image","Flat", "Sloped", "Curved", "Custom"]
+    floor_count_opts = ["Keep as input image"] + list(range(1, 21))
+    focus_area_opts = ["Keep as input image","Front Facade", "Rooftop Terrace", "Corner Detailing", "Full Building"]
     special_features_opts = ["Overhangs", "Sky Bridges", "Cantilevered Sections", "Green Walls"]
 
     # --- Layout ---
@@ -81,27 +79,43 @@ def show_page_2():
     # --- Generate Prompt ---
     if st.button("Generate Concept Prompt"):
         selected_features = ", ".join(special_features) if special_features else "none"
-        camera_view = "Maintain same view as input" if view_angle=="Default Angle" else view_angle
+        # Use "Keep as input image" as default fallback
+        camera_view = "Maintain same view as input" if view_angle=="Keep as input image" else view_angle
+        dof_val = "Keep as input" if depth_of_field=="Keep as input image" else depth_of_field
+        motion_blur_val = "Keep as input" if motion_blur=="Keep as input image" else motion_blur
+        time_val = "Keep as input" if time_of_day=="Keep as input image" else time_of_day
+        weather_val = "Keep as input" if weather=="Keep as input image" else weather
+        wind_val = "Keep as input" if wind_strength=="Keep as input image" else wind_strength
+        interior_val = "Keep as input" if interior_lights=="Keep as input image" else interior_lights
+        corner_val = "Keep as input" if corner_style=="Keep as input image" else corner_style
+        terrace_val = "Keep as input" if terrace_connection=="Keep as input image" else terrace_connection
+        material_val = "Keep as input" if material=="Keep as input image" else material
+        led_val = "Keep as input" if lighting_edge=="Keep as input image" else lighting_edge
+        volume_val = "Keep as input" if building_volume=="Keep as input image" else building_volume
+        roof_val = "Keep as input" if roof_profile=="Keep as input image" else roof_profile
+        floor_val = "Keep as input" if floor_count=="Keep as input image" else floor_count
+        mood_val = "Keep as input" if mood_style=="Keep as input image" else mood_style
+        focus_val = "Keep as input" if focus_area=="Keep as input image" else focus_area
 
         prompt = f"A detailed architectural concept development.\n"
-        prompt += f"Materials: {material}.\n"
+        prompt += f"Materials: {material_val}.\n"
         prompt += f"View / Camera Angle: {camera_view}\n"
-        prompt += f"Depth of Field: {depth_of_field}\n"
-        prompt += f"Motion Blur: {motion_blur}\n"
-        prompt += f"Time of Day: {time_of_day}\n"
-        prompt += f"Weather: {weather}\n"
-        prompt += f"Wind Strength: {wind_strength}\n"
-        prompt += f"Interior Lights: {interior_lights}\n"
+        prompt += f"Depth of Field: {dof_val}\n"
+        prompt += f"Motion Blur: {motion_blur_val}\n"
+        prompt += f"Time of Day: {time_val}\n"
+        prompt += f"Weather: {weather_val}\n"
+        prompt += f"Wind Strength: {wind_val}\n"
+        prompt += f"Interior Lights: {interior_val}\n"
         prompt += f"Active Reflection: {active_reflection}\n"
         prompt += f"Render Style: {render_style}\n"
         prompt += f"Site Context: {site_context_descriptions.get(site_context, site_context)}\n"
-        prompt += f"Mood / Style: {mood_style}\n"
-        prompt += f"Corner Style: {corner_style}\n"
-        prompt += f"Terrace Connection: {terrace_connection}\n"
-        prompt += f"Roof Profile: {roof_profile}\n"
-        prompt += f"Building Volume Adjustment: {building_volume}\n"
-        prompt += f"Number of Floors: {floor_count}\n"
-        prompt += f"Focus Area: {focus_area}\n"
+        prompt += f"Mood / Style: {mood_val}\n"
+        prompt += f"Corner Style: {corner_val}\n"
+        prompt += f"Terrace Connection: {terrace_val}\n"
+        prompt += f"Roof Profile: {roof_val}\n"
+        prompt += f"Building Volume Adjustment: {volume_val}\n"
+        prompt += f"Number of Floors: {floor_val}\n"
+        prompt += f"Focus Area: {focus_val}\n"
         prompt += f"Special Features: {selected_features}\n"
         prompt += f"Additional Details: {additional_prompt if additional_prompt else 'none'}\n"
         prompt += "Ensure building fits fully inside the view, volume and corner adjustments follow the concept instructions."
