@@ -19,6 +19,12 @@ page = st.sidebar.radio(
 
 st.session_state.page = page
 
+# --- Credit and QR code below navigation ---
+st.sidebar.markdown("---")  # horizontal line
+st.sidebar.markdown("**Created by Oak Sopheaktra👾**")  # your credit
+# Add space for QR code
+st.sidebar.image("data/IMG_3172.PNG", use_column_width=True)
+
 # --- Load Pages Dynamically ---
 if st.session_state.page == "Prompt Generator":
     from pages.page1 import show_page_1
