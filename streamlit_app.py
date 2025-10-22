@@ -19,10 +19,3 @@ page = st.sidebar.radio(
 
 st.session_state.page = page
 
-# --- Load Pages Dynamically ---
-if st.session_state.page == "Prompt Generator":
-    from pages.page1 import show_prompt_page
-    show_prompt_page()
-elif st.session_state.page == "Blank Page":
-    from pages.page2 import show_blank_page
-    show_blank_page()
