@@ -96,7 +96,8 @@ def show_page_1():
         
         st.text_area("Generated Prompt", prompt, height=400)
         
-        st.success("Prompt generated! ✅ Copy manually to clipboard (works on mobile and PC).")
+        st.success("Prompt generated! ✅ Copy generated prompt and paste the AI prompt🐼")
+
 
 
 
