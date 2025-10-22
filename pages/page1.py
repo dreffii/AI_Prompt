@@ -72,6 +72,7 @@ def show_page_1():
         active_reflection = st.selectbox("✨ Active Reflection", active_reflection_opts)
         render_style = st.selectbox("🎨 Render Style", render_style_opts)
         site_context = st.selectbox("🏙 Site Context", site_context_opts)
+        additional_site_prompt = st.text_area("Additional Prompt (optional)", placeholder="Add any extra description or context for the site...")
         mood_style = st.selectbox("🎭 Mood / Style", mood_style_opts)
     
     # --- Add Objects ---
@@ -118,6 +119,7 @@ def show_page_1():
         st.text_area("Generated Prompt", prompt, height=400)
         
         st.success("Prompt generated! ✅ Copy generated prompt and paste the AI prompt🐼")
+
 
 
 
