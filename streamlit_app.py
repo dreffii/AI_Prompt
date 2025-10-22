@@ -22,7 +22,7 @@ st.session_state.page = page
 # --- Load Pages Dynamically ---
 if st.session_state.page == "Prompt Generator":
     from pages.page1 import show_page_1
-    show_prompt_page()
+    show_page_1()
 elif st.session_state.page == "Blank Page":
     from pages.page2 import show_page_2
-    show_blank_page()
+    show_page_2()
