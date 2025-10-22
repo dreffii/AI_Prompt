@@ -1,5 +1,6 @@
 import streamlit as st
 from animated_title import show_animated_title
+from data.site_contexts import site_context_descriptions  # ✅ import descriptions
 
 def show_page_1():
     st.set_page_config(page_title="🏛️ AI Prompt Generator ✨", layout="wide")
@@ -115,5 +116,6 @@ def show_page_1():
 
         st.text_area("Generated Prompt", prompt, height=400)
         st.success("Prompt generated! ✅ Copy manually to clipboard (works on mobile and PC).")
+
 
 
