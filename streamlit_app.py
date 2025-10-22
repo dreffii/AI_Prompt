@@ -13,8 +13,8 @@ with st.sidebar:
     st.divider()
     st.markdown("Made by **Oak Sopheaktra** ✨")
 
-# --- Handle Page Navigation ---
+# --- Page Switching ---
 if page == "🏗️ AI Prompt Generator":
-    st.switch_page("pages/1_AI_Prompt_Generator")
+    st.switch_page("pages/1_Prompt_Generator")   # ✅ Correct file name (no .py)
 elif page == "📝 Blank Page":
-    st.switch_page("pages/2_Blank_Page")
+    st.switch_page("pages/2_Blank_Page")         # You can add this later
