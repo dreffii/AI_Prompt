@@ -2,23 +2,21 @@ import streamlit as st
 
 st.set_page_config(page_title="🏛️ AI Prompt Generator ✨", layout="wide")
 
-# --- Force sidebar to appear ---
+# --- Sidebar Navigation ---
 with st.sidebar:
     st.title("🧭 Navigation")
-    st.markdown("""
-    **Pages**
-    - 🏗️ [AI Prompt Generator](1_AI_Prompt_Generator)
-    - 📝 [Blank Page](2_Blank_Page)
-    """)
+
+    page = st.radio(
+        "Go to:",
+        ["🏗️ AI Prompt Generator", "📝 Blank Page"],
+        label_visibility="collapsed"
+    )
+
     st.divider()
     st.markdown("Made by **Oak Sopheaktra** ✨")
 
-# --- Main page content ---
-st.title("🏛️ AI Prompt Generator by Oak Sopheaktra")
-
-st.markdown("""
-Welcome! 👋  
-Use the sidebar on the left to navigate between pages:
-- **AI Prompt Generator** → Generate professional architectural prompts.  
-- **Blank Page** → Reserved for your future ideas or tools.
-""")
+# --- Page Routing ---
+if page == "🏗️ AI Prompt Generator":
+    st.switch_page("pages/1_AI_Prompt_Generator.py")
+elif page == "📝 Blank Page":
+    st.switch_page("pages/2_Blank_Page.py")
