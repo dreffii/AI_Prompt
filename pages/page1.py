@@ -97,12 +97,13 @@ def show_page_1():
         # Display prompt in text_area
         st.text_area("Generated Prompt", prompt, height=400)
         
-        # Copy to clipboard button
+        # Copy button (works reliably)
         if st.button("📋 Copy Prompt"):
-            st.clipboard_set(prompt)
+            st.clipboard_set(st.session_state.generated_prompt)
             st.success("Prompt copied to clipboard! ✅")
         
         st.success("Prompt generated! ✅ Copy manually to clipboard (works on mobile and PC).")
+
 
 
 
