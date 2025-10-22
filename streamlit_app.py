@@ -12,7 +12,7 @@ if "page" not in st.session_state:
 
 page = st.sidebar.radio(
     "Go to:",
-    ["Prompt Generator 🐰", "Blank Page"],
+    ["Prompt Generator 🐰", "Concept Prompt 🐻‍❄️"],
     index=0 if st.session_state.page == "Prompt Generator 🐰" else 1,
     label_visibility="collapsed"
 )
@@ -29,6 +29,6 @@ st.sidebar.markdown("**Created by Oak Sopheaktra👾**")  # your credit
 if st.session_state.page == "Prompt Generator 🐰":
     from pages.page1 import show_page_1
     show_page_1()
-elif st.session_state.page == "Blank Page":
+elif st.session_state.page == "Concept Prompt 🐻‍❄️":
     from pages.page2 import show_page_2
     show_page_2()
