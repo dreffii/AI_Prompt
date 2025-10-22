@@ -1,3 +1,26 @@
+# --- Site contexts ---
+site_context_opts = [
+    "Enhance Only (No Context)","Modern Metropolis (Day)","Modern Metropolis (Night)","Suburban Neighborhood",
+    "Historic European Street","Japanese Zen Garden","Coastal Town","Mountain Valley","Lush Forest",
+    "Tropical Island Beach","Desert Landscape","Upscale Plaza","Golf Course Sunrise","Waterfront Promenade",
+    "Street Food Market","Botanical Garden","Highway Interchange Night","Glaciated Mountain Pass",
+    "Luxury Resort","Financial District","Abandoned Industrial","University Campus Quad","Historic Cathedral Square",
+    "Data Center Park","Volcanic Sand Beach","Train Station Concourse","High-Tech Agricultural",
+    "Temperate River","Exclusive Residential","Art District","Reflective Salt Flat",
+    "Residential Area – Suburban","Residential Area – Urban","Riverside Residential","Urban Market / Street Market",
+    "Supermarket / Retail Complex","Urban Street / Downtown","Hospital / Medical Campus","School Campus",
+    "University Campus","Office / Company Campus","Urban Green Park","Public Parking Lot",
+    "Riverside / Waterfront Urban","Mixed-use Urban Development","Industrial / Warehouse Area",
+    "Transport Hub – Bus / Train Station","Community Center / Civic Plaza","Riverside Park / Recreation Area",
+    "Urban Intersection / Street Network","Hospital Rooftop / Helipad Area",
+    "Pedestrian Street / Promenade","Urban Plaza / Square","Residential Courtyard","Riverside Walkway",
+    "Parking Garage / Multilevel Parking","Suburban Shopping Street","Industrial Park / Logistics Area",
+    "University Library Area","Hospital Entrance / Ambulance Area","School Playground / Sports Area",
+    "Botanical Conservatory / Greenhouse","Corporate Office Plaza","Mixed Residential & Retail Street",
+    "Community Park with Playground","Harbor / Marina","Mountain Lodge / Resort Area",
+    "Urban Rooftop Garden","Bus Terminal / Transit Hub","City Intersection with Roundabout","Waterfront Park / Pier"
+]
+
 # --- Site context descriptions ---
 site_context_descriptions = {
   "Enhance Only (No Context)": "Focus on the building itself without adding any external surroundings. Keep the background minimal and neutral.",
