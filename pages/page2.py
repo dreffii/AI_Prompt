@@ -75,7 +75,7 @@ def show_page_2():
                 return f"{name}: {val}\n"
             return ""
 
-        prompt = "A concept architectural design based on the input image.\n"
+        prompt = "As an expet architect, reimagine this architecture and change the design to: \n"
 
         # Scene Settings
         prompt += include_val("View / Camera Angle", view_angle, always_include=True)
@@ -104,3 +104,4 @@ def show_page_2():
 
         st.text_area("Generated Concept Prompt", prompt, height=400)
         st.success("Concept Prompt generated! ✅ Copy manually to clipboard (works on mobile and PC).")
+
