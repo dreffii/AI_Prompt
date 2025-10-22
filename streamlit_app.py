@@ -23,7 +23,7 @@ st.session_state.page = page
 st.sidebar.markdown("---")  # horizontal line
 st.sidebar.markdown("**Created by Oak Sopheaktra👾**")  # your credit
 # Add space for QR code
-st.sidebar.image("data/IMG_3172.PNG", use_container_width=True)
+# st.sidebar.image("data/IMG_3172.PNG", use_container_width=True)
 
 # --- Load Pages Dynamically ---
 if st.session_state.page == "Prompt Generator":
